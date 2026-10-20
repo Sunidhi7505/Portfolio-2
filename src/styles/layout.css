@@ -90,7 +90,7 @@
 .chip-btn[aria-pressed='true'] { border-color: var(--accent); color: var(--accent-text); }
 
 .scene-fallback { position: absolute; inset: 0 0 3.2rem; display: grid; place-items: center; }
-.scene-fallback img { height: 100%; max-height: 440px; width: auto; object-fit: contain; }
+.scene-fallback svg { height: 100%; max-height: 440px; width: auto; overflow: visible; }
 
 .scroll-indicator { position: absolute; left: 50%; bottom: 1.4rem; transform: translateX(-50%); display: none; flex-direction: column; align-items: center; gap: 0.4rem; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); text-decoration: none !important; }
 .scroll-indicator:hover { color: var(--text); }

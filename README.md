@@ -1,7 +1,43 @@
-# Sunidhi Goyal — 3D Developer Portfolio
+# Sunidhi Goyal — Ancient-Technology Cave Portfolio
 
-React 19 · Vite · Three.js / React Three Fiber · GSAP ScrollTrigger · Framer Motion · Lucide.
-Dark-first with a persisted light/dark toggle, a procedural 3D professional avatar, and all content in one data file.
+React 19 · Vite · Three.js / React Three Fiber · drei · Framer Motion · Lucide · simple-icons.
+The default experience is an **immersive scroll-driven 3D cave**: the camera travels from a sunlit cave mouth, through ten
+torch-lit chambers (Entrance → About → Education → Experience → Skills → Projects → Certifications → Achievements → Coding
+profiles → Contact campfire) to a sunrise exit. A classic, fast, flat portfolio (the previous design) is kept as a fallback
+and is one click away (**Classic view**) — it is also what visitors get without WebGL or with `prefers-reduced-motion`.
+All content still lives in one data file (`src/data/portfolioData.js`).
+
+## The cave experience
+
+| Piece | File(s) |
+| --- | --- |
+| Cave geometry (displaced tube swept along a spline, chambers = bulges), camera stops, panel anchors | `src/cave/path.js` |
+| Scroll → camera (plateau easing, quaternion slerps, parallax, damping) | `src/cave/CameraRig.jsx` |
+| Procedural rock / wood / flame / mountain textures | `src/cave/textures.js`, `noise.js` |
+| World-space triplanar rock material (no stretched UVs on the displaced mesh) | `src/cave/triplanar.js` |
+| Tunnel + stalactites/stalagmites/boulders (instanced) | `src/cave/scene/Tunnel.jsx` |
+| Torches: 10 real point lights are re-assigned to the nearest torches each frame (constant light count), flickering flame sprites | `scene/Torches.jsx` |
+| Sky dome (day + sunrise), mountain layers, gorge, rope bridge, cliffs, waterfalls | `scene/Sky.jsx`, `scene/Exterior.jsx`, `scene/Waterfall.jsx` |
+| Per-chamber props (shelves, workbench, gears, chests, crystals, banners, campfire, signposts, lanterns, vines) | `scene/Props.jsx` (`LAYOUT` table at the bottom) |
+| Embers + dust (GPU-animated points), bats (instanced, shader wing-flap, never over text) | `scene/Particles.jsx`, `scene/Bats.jsx` |
+| Carved parchment panels mounted in 3D as real DOM (selectable, accessible) | `scene/Panels3D.jsx`, `panels/` |
+| Wooden nav, hero nameplate, sound toggle, mobile sheet, project dialog | `Hud.jsx`, `cave.css` |
+| Procedural ambient audio (no recordings) | `audio.js` |
+
+**Adding / editing content:** only touch `src/data/portfolioData.js`. Panels (`src/cave/panels/content.jsx`) read from it; nothing personal is
+hard-coded in 3D code. Project cards use `project.screenshot` if set (e.g. `'/projects/foody.png'`, file in `public/projects/`);
+`screenshot: null` is explicit for each project because no real screenshots were available — the card falls back to the
+illustration. Missing links are `null` in the data (no “Live” button is rendered for them).
+
+**Controls:** scroll, the wooden nav, ↑/↓ / PageUp/PageDown / ←/→ / Home / End (jump chamber by chamber), the mobile stepper. **Sound is OFF by default**;
+the toggle (top right) starts a synthesised cave ambience (rumble, drips, fire crackle, crickets/birds near the cave mouths, bat flutter, waterfall) with a
+volume slider. It pauses when the tab is hidden and never starts without a click. No copyrighted audio is used.
+
+**URL flags:** `?view=classic` / `?view=cave` force a presentation; `?quality=lite` forces the reduced-cost 3D profile.
+
+**Honest note on art:** the cave is generated entirely in code (procedural rock, light, fog, geometry). It is not a painted illustration.
+To push it closer to a painted look, replace the generated textures in `src/cave/textures.js` with authored PBR/painted maps
+(drop files in `public/cave/` and load them with `useTexture`) and swap the exterior crags for modelled cliffs.
 
 ## Requirements
 
@@ -19,7 +55,7 @@ npm run build      # production build → dist/
 npm run preview    # serve the production build → http://localhost:4173
 ```
 
-Debug query flag: append `?scene=full`, `?scene=lite` or `?scene=off` to force a 3D mode (`off` shows the no-WebGL fallback).
+Debug query flag (classic page): append `?view=classic&scene=full`, `?scene=lite` or `?scene=off` to force a 3D mode (`off` shows the no-WebGL fallback).
 
 ## Project structure
 

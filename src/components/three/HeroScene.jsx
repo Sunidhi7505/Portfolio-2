@@ -2,8 +2,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Float } from '@react-three/drei'
 import * as THREE from 'three'
-import { AVATAR_H } from './ProfessionalAvatar'
-import PhotoAvatar from './PhotoAvatar'
+import ProfessionalAvatar, { AVATAR_H } from './ProfessionalAvatar'
 import FloatingSkills from './FloatingSkills'
 import { orbitSkills } from '../../data/portfolioData'
 import { sceneStore, subscribeScene, isFolded } from '../../utils/sceneStore'
@@ -188,8 +187,7 @@ function AvatarRig({ theme, mode, reduced, shared }) {
     // Map the DOM stage rectangle (CSS px) onto the z=0 plane in world units.
     const { size, camera } = state
     const wpp = (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z) / size.height
-    const avatarWidth = AVATAR_H * (1024 / 1536)
-    const fit = Math.max(0.01, Math.min((a.h * 1.08 * wpp) / AVATAR_H, (a.w * 0.98 * wpp) / avatarWidth) - (5 * wpp) / AVATAR_H)
+    const fit = Math.min((a.h * 0.8 * wpp) / AVATAR_H, (a.w * 0.98 * wpp) / 3.9)
     g.scale.setScalar(fit)
     g.position.set((a.cx - size.width / 2) * wpp, -(a.cy - size.height / 2) * wpp - (AVATAR_H * fit) / 2 + a.h * 0.02 * wpp, 0)
     if (inner.current) inner.current.scale.setScalar(1 + 0.035 * s.focus)
@@ -241,7 +239,7 @@ function AvatarRig({ theme, mode, reduced, shared }) {
         </mesh>
 
         <group ref={inner}>
-          <PhotoAvatar reduced={reduced} shared={shared} />
+          <ProfessionalAvatar theme={theme} reduced={reduced} shared={shared} />
         </group>
         {mode === 'full' && <FloatingSkills skills={orbitSkills} theme={theme} shared={shared} reduced={reduced} />}
       </group>

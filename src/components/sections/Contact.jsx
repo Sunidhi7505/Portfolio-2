@@ -33,7 +33,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title">
       <div className="container">
-        <SectionHeading id="contact-title" eyebrow="09 · Contact" title={contact.heading} lede={contact.text} />
+        <SectionHeading id="contact-title" eyebrow="10 · Contact" title={contact.heading} lede={contact.text} />
         <div className="contact__grid">
           <Reveal className="card contact-card">
             <h3>Get in touch</h3>

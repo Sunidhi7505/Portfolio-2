@@ -5,7 +5,7 @@ import ThemeToggle from './ThemeToggle'
 import { extraNav, links, navItems, profile } from '../../data/portfolioData'
 import { useActiveSection } from '../../hooks/useActiveSection'
 
-const SECTION_IDS = ['home', 'about', 'experience', 'skills', 'projects', 'education', 'certifications', 'achievements', 'coding', 'contact']
+const SECTION_IDS = ['home', 'about', 'resume', 'experience', 'skills', 'projects', 'education', 'certifications', 'achievements', 'coding', 'contact']
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)

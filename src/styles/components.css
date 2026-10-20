@@ -111,3 +111,12 @@
 .form input::placeholder { color: var(--text-faint); }
 .form input:focus-visible, .form textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .form textarea { resize: vertical; }
+
+/* Opt-in entry to the immersive cave from the classic page */
+.enter-cave {
+  position: fixed; left: 16px; bottom: 16px; z-index: 90; display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 18px; min-height: 44px; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+  color: #fff3d6; background: linear-gradient(180deg, #8a5a2b, #5a3a1c); border: 1px solid #2b1a0c;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 0 18px rgba(255, 160, 50, 0.35);
+}
+.enter-cave:hover { filter: brightness(1.12); }

@@ -27,7 +27,7 @@ export const profile = {
   location: 'Agra, Uttar Pradesh, India',
   tagline: 'Java · Spring Boot · REST APIs · Full-stack projects',
   avatarAlt:
-    'Portrait of Sunidhi Goyal, standing in a navy business suit and white shirt.',
+    'Stylized 3D illustration of a professional developer in a blazer — a placeholder avatar, not a photograph.',
 }
 
 export const links = {
@@ -44,7 +44,7 @@ export const links = {
 /** Navigation. `ids` are the section ids that should highlight the item. */
 export const navItems = [
   { label: 'Home', href: '#home', ids: ['home'] },
-  { label: 'About', href: '#about', ids: ['about'] },
+  { label: 'About', href: '#about', ids: ['about', 'resume'] },
   { label: 'Experience', href: '#experience', ids: ['experience'] },
   { label: 'Skills', href: '#skills', ids: ['skills'] },
   { label: 'Projects', href: '#projects', ids: ['projects'] },
@@ -55,13 +55,15 @@ export const navItems = [
 
 /** Extra links shown only in the mobile menu / footer. */
 export const extraNav = [
+  { label: 'Resume', href: '#resume' },
   { label: 'Coding Profiles', href: '#coding' },
 ]
 
 export const about = {
   summary: [
-    'Java backend developer (B.E. CSE, Chandigarh University, 2026) who builds secure REST APIs with Spring Boot, JWT and role-based access control.',
-    'Recently interned at Intellect Design Arena, shipping a QR-based visitor management system — and I sharpen my problem solving in C++ with 593 DSA problems solved.',
+    'I’m a Computer Science graduate (B.E., Chandigarh University, 2022–2026) who enjoys the backend side of full-stack work: designing REST APIs, securing them with Spring Security and JWT, and modelling data cleanly with OOP and SQL.',
+    'In summer 2026 I completed a two-month SDE internship at Intellect Design Arena in Chennai. I trained across Java, OOP, DSA, SQL, Spring Boot and security fundamentals, then built a Smart Visitor Management System with QR-code check-in, invite-link pre-registration and role-based access control.',
+    'On my own time I build end-to-end projects such as Foody, a food delivery platform with 20+ REST endpoints, Razorpay payments and live delivery tracking, and I practise data structures and algorithms in C++ — 593 problems solved across platforms according to my Codolio profile.',
   ],
   interests: [
     { title: 'Backend & REST APIs', text: 'Layered Spring Boot services with clear request/response contracts.' },
@@ -126,6 +128,8 @@ export const skillCategories = [
       { name: 'JWT', logo: 'jwt', note: 'Token-based authentication in Foody.' },
       { name: 'Hibernate', logo: 'hibernate', note: 'ORM layer for relational persistence.' },
       { name: 'Spring Data JPA', logo: 'spring', note: 'Repository layer for the Student Management backend.' },
+      { name: 'Node.js', logo: 'nodejs', note: 'Backend of the Sweet Shop Management app (per repo README).', source: 'GitHub' },
+      { name: 'Express.js', logo: 'express', note: 'REST API of the Sweet Shop Management app (per repo README).', source: 'GitHub' },
     ],
   },
   {
@@ -136,6 +140,7 @@ export const skillCategories = [
       { name: 'HTML', logo: 'html5', note: 'Semantic markup for all web projects.' },
       { name: 'CSS', logo: 'css3', note: 'Responsive layouts for Foody and SortVision.' },
       { name: 'JavaScript', logo: 'javascript', note: 'DOM, async code and interactive visualisation.' },
+      { name: 'React (Vite)', logo: 'react', note: 'Frontend of the Sweet Shop Management app (per repo README).', source: 'GitHub' },
     ],
   },
   {
@@ -187,6 +192,7 @@ export const projects = [
     subtitle: 'Full-stack food delivery website',
     period: 'Nov 2025 – Jan 2026',
     art: 'food',
+    screenshot: null, // no screenshot file yet — drop one in public/projects/ and set e.g. '/projects/foody.png'
     problem:
       'Ordering food online involves a lot of moving parts — catalogue, cart, coupons, payments, delivery status and support. Foody brings them together in one role-aware application for customers and admins.',
     description:
@@ -208,6 +214,7 @@ export const projects = [
     subtitle: 'Interactive sorting algorithm visualizer',
     period: 'Jun 2024 – Jul 2024',
     art: 'sort',
+    screenshot: null, // add '/projects/sortvision.png' once available
     problem:
       'Sorting algorithms are easier to understand when you can watch them work. SortVision animates each step so the differences between algorithms are visible.',
     description:
@@ -227,6 +234,7 @@ export const projects = [
     title: 'Sweet Shop Management',
     subtitle: 'MERN-stack inventory & sales app',
     art: 'shop',
+    screenshot: null, // add '/projects/sweet-shop.png' once available
     problem: 'Small shops need a simple way to track stock and revenue while letting customers browse what is available.',
     description:
       'Customers can search, filter and buy sweets; admins add, edit, delete and restock items and view revenue per sweet in a chart.',
@@ -246,6 +254,7 @@ export const projects = [
     title: 'Student Management Backend',
     subtitle: 'Spring Boot REST API',
     art: 'api',
+    screenshot: null, // add '/projects/student-management.png' once available
     problem: 'A clean, validated backend for managing student records.',
     description:
       'Spring Boot REST backend for student records with DTOs, request validation, global exception handling and MySQL via Spring Data JPA.',

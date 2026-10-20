@@ -10,7 +10,7 @@ export default function Certifications() {
   return (
     <section id="certifications" aria-labelledby="cert-title">
       <div className="container">
-        <SectionHeading id="cert-title" eyebrow="06 · Certifications" title="Credentials" lede="Certificates link to the files kept on Google Drive. Credential IDs aren’t publicly documented, so none are listed." />
+        <SectionHeading id="cert-title" eyebrow="07 · Certifications" title="Credentials" lede="Certificates link to the files kept on Google Drive. Credential IDs aren’t publicly documented, so none are listed." />
         <motion.ul className="cert-grid" variants={stagger(reduced, 0.1)} initial="hidden" whileInView="show" viewport={viewportOnce}>
           {certifications.map((c) => (
             <motion.li key={c.id} className="card cert-card" variants={fadeUp(reduced)}>

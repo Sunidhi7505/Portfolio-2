@@ -11,7 +11,7 @@ export default function Achievements() {
   return (
     <section id="achievements" aria-labelledby="ach-title">
       <div className="container">
-        <SectionHeading id="ach-title" eyebrow="07 · Achievements" title="Highlights" lede={`Coding numbers are a static snapshot of my public profiles, taken ${a.snapshotDate}. They are not live.`} />
+        <SectionHeading id="ach-title" eyebrow="08 · Achievements" title="Highlights" lede={`Coding numbers are a static snapshot of my public profiles, taken ${a.snapshotDate}. They are not live.`} />
 
         <div className="ach__grid">
           <Reveal className="card ach-feature">

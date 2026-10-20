@@ -86,7 +86,7 @@ export default function Experience() {
   return (
     <section id="experience" aria-labelledby="experience-title">
       <div className="container">
-        <SectionHeading id="experience-title" eyebrow="02 · Experience" title="Where I’ve worked" lede="Professional experience to date: one software development internship." />
+        <SectionHeading id="experience-title" eyebrow="03 · Experience" title="Where I’ve worked" lede="Professional experience to date: one software development internship." />
         <div className="timeline" ref={trackRef}>
           <div className="timeline__rail" aria-hidden="true"><span ref={lineRef} className="timeline__progress" /></div>
           {experience.map((item, i) => (

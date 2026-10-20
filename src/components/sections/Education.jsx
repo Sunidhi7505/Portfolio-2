@@ -10,7 +10,7 @@ export default function Education() {
   return (
     <section id="education" aria-labelledby="education-title">
       <div className="container">
-        <SectionHeading id="education-title" eyebrow="05 · Education" title="Where I studied" />
+        <SectionHeading id="education-title" eyebrow="06 · Education" title="Where I studied" />
         <motion.ol className="edu-list" variants={stagger(reduced, 0.1)} initial="hidden" whileInView="show" viewport={viewportOnce}>
           {education.map((e, i) => (
             <motion.li key={e.id} className={`card edu-card ${i === 0 ? 'edu-card--primary' : ''}`} variants={fadeUp(reduced)}>

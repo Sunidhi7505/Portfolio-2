@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowDown, Download, Mail, Sparkles } from 'lucide-react'
+import { ArrowDown, Download, Hand, Mail, Sparkles } from 'lucide-react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from '../ui/Button'
@@ -10,7 +10,7 @@ import { links, profile } from '../../data/portfolioData'
 import { useMediaQuery, usePrefersReducedMotion } from '../../hooks/useMediaQuery'
 import { useTypewriter } from '../../hooks/useTypewriter'
 import { useAnchorRect } from '../../hooks/useAnchorRect'
-import { notifyScene, sceneStore } from '../../utils/sceneStore'
+import { isFolded, notifyScene, sceneStore } from '../../utils/sceneStore'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,12 +22,25 @@ export default function Hero({ sceneStatus }) {
   const role = useTypewriter(profile.roles, { reduced })
   const stageRef = useRef(null)
   const contentRef = useRef(null)
+  const [folded, setFolded] = useState(false)
 
   useAnchorRect(stageRef)
 
-  // Gently parallax the text column on scroll. ScrollTrigger is created inside a gsap.context for clean teardown.
+  // Scroll-linked: fold the avatar's arms once the stage has scrolled up past ~25% of the viewport,
+  // and gently parallax the text column. ScrollTrigger is created inside a gsap.context for clean teardown.
   useEffect(() => {
     const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: '#home',
+        start: '22% top', // once the visitor has scrolled ~a fifth of the hero
+        end: 'bottom top',
+        onToggle: (self) => {
+          sceneStore.foldScroll = self.isActive
+          sceneStore.foldManual = null // scrolling hands control back to the scroll trigger
+          setFolded(isFolded())
+          notifyScene()
+        },
+      })
       if (!reduced) {
         gsap.to(contentRef.current, {
           yPercent: -8, opacity: 0.35, ease: 'none',
@@ -37,6 +50,13 @@ export default function Hero({ sceneStatus }) {
     })
     return () => ctx.revert()
   }, [reduced])
+
+  const toggleFold = () => {
+    const next = !isFolded()
+    sceneStore.foldManual = next
+    setFolded(next)
+    notifyScene()
+  }
 
   const setHover = (v) => () => { sceneStore.heroHover = v; notifyScene() }
 
@@ -102,13 +122,20 @@ export default function Hero({ sceneStatus }) {
           onPointerEnter={setHover(true)}
           onPointerLeave={setHover(false)}
           role="group"
-          aria-label="Interactive portrait"
+          aria-label="Interactive 3D avatar"
         >
           {sceneStatus === 'fallback' && <SceneFallback />}
           <p className="sr-only">{profile.avatarAlt}</p>
           <div className="hero__stage-ui">
+            {/* The pose control only makes sense while the 3D avatar is running. */}
+            {sceneStatus !== 'fallback' && (
+              <button type="button" className="chip-btn" onClick={toggleFold} aria-pressed={folded}>
+                <Hand size={15} aria-hidden="true" />
+                <span>{folded ? 'Relax pose' : 'Fold arms'}</span>
+              </button>
+            )}
             <p className="hero__hint" aria-hidden="true">
-              {sceneStatus === 'fallback' ? '' : touch ? 'Scroll to explore' : 'Move your cursor to turn the portrait'}
+              {sceneStatus === 'fallback' ? 'Stylized illustration' : touch ? 'Scroll or tap to change her pose' : 'Move your cursor · scroll to change her pose'}
             </p>
           </div>
         </div>

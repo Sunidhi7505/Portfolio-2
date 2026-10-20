@@ -28,9 +28,6 @@ export const GLYPH = {
   dbms: Database, os: Cpu, networks: Network, storage: HardDrive,
 }
 
-/** Official brand colours for marks rendered as glyphs (no simple-icons mark available). */
-export const GLYPH_COLOR = { java: '#E76F00', sql: '#00758F', vscode: '#007ACC' }
-
 export const DISPLAY_NAME = {
   java: 'Java', sql: 'SQL', vscode: 'VS Code', rest: 'REST APIs', dsa: 'DSA', oop: 'OOP',
   dbms: 'DBMS', os: 'Operating Systems', networks: 'Computer Networks',

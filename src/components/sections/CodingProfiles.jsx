@@ -11,7 +11,7 @@ export default function CodingProfiles() {
   return (
     <section id="coding" aria-labelledby="coding-title">
       <div className="container">
-        <SectionHeading id="coding-title" eyebrow="08 · Coding profiles" title="Practice in public" lede="Where my problem solving and code live. Statistics are snapshots from 19 Oct 2026 and don’t update automatically." />
+        <SectionHeading id="coding-title" eyebrow="09 · Coding profiles" title="Practice in public" lede="Where my problem solving and code live. Statistics are snapshots from 19 Oct 2026 and don’t update automatically." />
         <motion.ul className="profile-grid" variants={stagger(reduced, 0.1)} initial="hidden" whileInView="show" viewport={viewportOnce}>
           {codingProfiles.map((p) => (
             <motion.li key={p.id} className="card profile-card" variants={fadeUp(reduced)}>

@@ -19,7 +19,7 @@ export default function Projects() {
   return (
     <section id="projects" aria-labelledby="projects-title">
       <div className="container">
-        <SectionHeading id="projects-title" eyebrow="04 · Projects" title="Things I’ve built" lede="Two live, resume-featured projects first, then other repositories from my GitHub. Live demos are shown only where a working deployment exists." />
+        <SectionHeading id="projects-title" eyebrow="05 · Projects" title="Things I’ve built" lede="Two live, resume-featured projects first, then other repositories from my GitHub. Live demos are shown only where a working deployment exists." />
 
         <motion.div className="project-grid project-grid--featured" variants={stagger(reduced, 0.12)} initial="hidden" whileInView="show" viewport={viewportOnce}>
           {featured.map((p) => <ProjectCard key={p.id} project={p} onOpen={setSelected} variants={fadeUp(reduced)} />)}

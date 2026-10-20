@@ -2,7 +2,7 @@ import { useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Code2, Cpu, Database, Layout, Server, Wrench } from 'lucide-react'
 import SectionHeading from '../ui/SectionHeading'
-import Icon3D from '../ui/Icon3D'
+import TechIcon from '../ui/TechIcon'
 import { orbitSkills, skillCategories } from '../../data/portfolioData'
 import { usePrefersReducedMotion } from '../../hooks/useMediaQuery'
 
@@ -18,7 +18,7 @@ function Orbit() {
         <div className="orbit__item" key={k} style={{ '--a': `${(360 / items.length) * i}deg` }}>
           <div className="orbit__upright">
             <div className="orbit__badge" style={{ animationDirection: rev ? 'normal' : 'reverse', animationDuration: `${dur}s` }}>
-              <Icon3D name={k} size={66} iconSize={40} />
+              <TechIcon name={k} size={26} />
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@ function Orbit() {
         <div className="orbit__path orbit__path--2" />
         <div className="orbit__core"><span>Core<br />stack</span></div>
         {ring(inner, 92, 36, false)}
-        {ring(outer, 148, 56, true)}
+        {ring(outer, 150, 56, true)}
       </div>
     </div>
   )
@@ -60,7 +60,7 @@ export default function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-title">
       <div className="container">
-        <SectionHeading id="skills-title" eyebrow="03 · Skills" title="Tools I build with" lede="Taken from my resume and projects. No made-up percentages — just the technologies and where I’ve used them." />
+        <SectionHeading id="skills-title" eyebrow="04 · Skills" title="Tools I build with" lede="Taken from my resume and projects. No made-up percentages — just the technologies and where I’ve used them." />
 
         <div className="skills__grid">
           <Orbit />
@@ -100,7 +100,7 @@ export default function Skills() {
                 >
                   {active.skills.map((s) => (
                     <li key={s.name} className="skill-card" tabIndex={0}>
-                      <span className="skill-card__icon"><Icon3D name={s.logo} size={82} iconSize={50} /></span>
+                      <span className="skill-card__icon"><TechIcon name={s.logo} size={28} /></span>
                       <span className="skill-card__name">{s.name}</span>
                       <span className="skill-card__note">{s.note}{s.source ? ` (${s.source})` : ''}</span>
                     </li>
